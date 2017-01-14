@@ -1,0 +1,32 @@
+{
+  "http://petstore.swagger.io/v2/swagger.json": {
+    "output": "./samples/petstore/output-1.ts",
+    "generator": "ng1-http",
+    "mode": "typescript",
+    "transforms": {
+      "serviceName": "pascalCase",
+      "operationName": "camelCase",
+      "modelName": "pascalCase"
+    },
+    "url": "http://petstore.swagger.io/v2/swagger.json",
+    "options": {
+      "moduleName": "common",
+      "baseUrl": {
+        "type": "app.IConfig",
+        "provider": "config",
+        "path": ["baseUrl"]
+      },
+      "namespaces": {
+        "services": "petstore.webservices",
+        "models": "petstore.webservices.models"
+      },
+      "references": []
+    }
+  },
+  "petstore-local-generator": {
+    "output": "./samples/petstore/output.md",
+    "generator": "./local-generator",
+    "mode": "markdown",
+    "url": "http://petstore.swagger.io/v2/swagger.json"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "Demo of Swagen generators.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swagen/demo.git"
+  },
+  "keywords": [
+    "swagen",
+    "demo"
+  ],
+  "author": "Swagen <swagen@jeevanjames.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/swagen/demo/issues"
+  },
+  "homepage": "https://github.com/swagen/demo#readme",
+  "devDependencies": {
+    "lodash": "^4.17.4",
+    "swagen-core": "0.0.16"
+  }
+}
