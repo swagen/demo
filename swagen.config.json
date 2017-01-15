@@ -1,8 +1,8 @@
 {
   "http://petstore.swagger.io/v2/swagger.json": {
     "output": "./samples/petstore/output-1.ts",
-    "generator": "ng1-http",
-    "mode": "typescript",
+    "generator": "angular",
+    "mode": "ng1-typescript",
     "transforms": {
       "serviceName": "pascalCase",
       "operationName": "camelCase",
