@@ -17,36 +17,36 @@ namespace petstore.webservices {
     export interface IPetClient {
         /**
          * Add a new pet to the store
-         * @param {Pet} body - Pet object that needs to be added to the store
+         * @param {PetModel} body - Pet object that needs to be added to the store
          */
-        addPet(body: __models.Pet): ng.IPromise<any>;
+        addPet(body: __models.PetModel): ng.IPromise<any>;
 
         /**
          * Update an existing pet
-         * @param {Pet} body - Pet object that needs to be added to the store
+         * @param {PetModel} body - Pet object that needs to be added to the store
          */
-        updatePet(body: __models.Pet): ng.IPromise<any>;
+        updatePet(body: __models.PetModel): ng.IPromise<any>;
 
         /**
          * Finds Pets by status
          * Multiple status values can be provided with comma separated strings
-         * @param {string[]} status - Status values that need to be considered for filter
+         * @param {StatusPetModel[]} status - Status values that need to be considered for filter
          */
-        findPetsByStatus(status: string[]): ng.IPromise<__models.Pet[]>;
+        findPetsByStatus(status: __models.StatusPetModel[]): ng.IPromise<__models.PetModel[]>;
 
         /**
          * Finds Pets by tags
          * Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
          * @param {string[]} tags - Tags to filter by
          */
-        findPetsByTags(tags: string[]): ng.IPromise<__models.Pet[]>;
+        findPetsByTags(tags: string[]): ng.IPromise<__models.PetModel[]>;
 
         /**
          * Find pet by ID
          * Returns a single pet
          * @param {number} petId - ID of pet to return
          */
-        getPetById(petId: number): ng.IPromise<__models.Pet>;
+        getPetById(petId: number): ng.IPromise<__models.PetModel>;
 
         /**
          * Updates a pet in the store with form data
@@ -68,7 +68,7 @@ namespace petstore.webservices {
          * @param {string} additionalMetadata - Additional data to pass to server
          * @param {any} file - file to upload
          */
-        uploadFile(petId: number, additionalMetadata?: string, file?: any): ng.IPromise<__models.ApiResponse>;
+        uploadFile(petId: number, additionalMetadata?: string, file?: any): ng.IPromise<__models.ApiResponseModel>;
 
     }
 
@@ -81,16 +81,16 @@ namespace petstore.webservices {
 
         /**
          * Place an order for a pet
-         * @param {Order} body - order placed for purchasing the pet
+         * @param {OrderModel} body - order placed for purchasing the pet
          */
-        placeOrder(body: __models.Order): ng.IPromise<__models.Order>;
+        placeOrder(body: __models.OrderModel): ng.IPromise<__models.OrderModel>;
 
         /**
          * Find purchase order by ID
          * For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
          * @param {number} orderId - ID of pet that needs to be fetched
          */
-        getOrderById(orderId: number): ng.IPromise<__models.Order>;
+        getOrderById(orderId: number): ng.IPromise<__models.OrderModel>;
 
         /**
          * Delete purchase order by ID
@@ -105,21 +105,21 @@ namespace petstore.webservices {
         /**
          * Create user
          * This can only be done by the logged in user.
-         * @param {User} body - Created user object
+         * @param {UserModel} body - Created user object
          */
-        createUser(body: __models.User): ng.IPromise<any>;
+        createUser(body: __models.UserModel): ng.IPromise<any>;
 
         /**
          * Creates list of users with given input array
-         * @param {User[]} body - List of user object
+         * @param {UserModel[]} body - List of user object
          */
-        createUsersWithArrayInput(body: __models.User[]): ng.IPromise<any>;
+        createUsersWithArrayInput(body: __models.UserModel[]): ng.IPromise<any>;
 
         /**
          * Creates list of users with given input array
-         * @param {User[]} body - List of user object
+         * @param {UserModel[]} body - List of user object
          */
-        createUsersWithListInput(body: __models.User[]): ng.IPromise<any>;
+        createUsersWithListInput(body: __models.UserModel[]): ng.IPromise<any>;
 
         /**
          * Logs user into the system
@@ -135,17 +135,17 @@ namespace petstore.webservices {
 
         /**
          * Get user by user name
-         * @param {string} username - The name that needs to be fetched. Use user1 for testing.
+         * @param {string} username - The name that needs to be fetched. Use user1 for testing. 
          */
-        getUserByName(username: string): ng.IPromise<__models.User>;
+        getUserByName(username: string): ng.IPromise<__models.UserModel>;
 
         /**
          * Updated user
          * This can only be done by the logged in user.
          * @param {string} username - name that need to be updated
-         * @param {User} body - Updated user object
+         * @param {UserModel} body - Updated user object
          */
-        updateUser(username: string, body: __models.User): ng.IPromise<any>;
+        updateUser(username: string, body: __models.UserModel): ng.IPromise<any>;
 
         /**
          * Delete user
@@ -168,7 +168,7 @@ namespace petstore.webservices {
             this.baseUrl = config.baseUrl;
         }
 
-        public addPet(body: __models.Pet): ng.IPromise<any> {
+        public addPet(body: __models.PetModel): ng.IPromise<any> {
             if (body == undefined || body == null) {
                 throw new Error(`The parameter 'body' must be defined.`);
             }
@@ -182,7 +182,7 @@ namespace petstore.webservices {
                 .catch((response: ng.IHttpPromiseCallbackArg<any>) => response.data);
         }
 
-        public updatePet(body: __models.Pet): ng.IPromise<any> {
+        public updatePet(body: __models.PetModel): ng.IPromise<any> {
             if (body == undefined || body == null) {
                 throw new Error(`The parameter 'body' must be defined.`);
             }
@@ -196,7 +196,7 @@ namespace petstore.webservices {
                 .catch((response: ng.IHttpPromiseCallbackArg<any>) => response.data);
         }
 
-        public findPetsByStatus(status: string[]): ng.IPromise<__models.Pet[]> {
+        public findPetsByStatus(status: __models.StatusPetModel[]): ng.IPromise<__models.PetModel[]> {
             if (status == undefined || status == null) {
                 throw new Error(`The parameter 'status' must be defined.`);
             }
@@ -204,15 +204,15 @@ namespace petstore.webservices {
             let queryParams: {[key: string]: string} = {
                  status: encodeURIComponent('' + status)
             };
-            return this.$http<__models.Pet[]>({
+            return this.$http<__models.PetModel[]>({
                 method: 'GET',
                 url: buildServiceUrl(this.baseUrl, resourceUrl, queryParams)
             })
-                .then((response: ng.IHttpPromiseCallbackArg<__models.Pet[]>) => response.data)
+                .then((response: ng.IHttpPromiseCallbackArg<__models.PetModel[]>) => response.data)
                 .catch((response: ng.IHttpPromiseCallbackArg<any>) => response.data);
         }
 
-        public findPetsByTags(tags: string[]): ng.IPromise<__models.Pet[]> {
+        public findPetsByTags(tags: string[]): ng.IPromise<__models.PetModel[]> {
             if (tags == undefined || tags == null) {
                 throw new Error(`The parameter 'tags' must be defined.`);
             }
@@ -220,25 +220,25 @@ namespace petstore.webservices {
             let queryParams: {[key: string]: string} = {
                  tags: encodeURIComponent('' + tags)
             };
-            return this.$http<__models.Pet[]>({
+            return this.$http<__models.PetModel[]>({
                 method: 'GET',
                 url: buildServiceUrl(this.baseUrl, resourceUrl, queryParams)
             })
-                .then((response: ng.IHttpPromiseCallbackArg<__models.Pet[]>) => response.data)
+                .then((response: ng.IHttpPromiseCallbackArg<__models.PetModel[]>) => response.data)
                 .catch((response: ng.IHttpPromiseCallbackArg<any>) => response.data);
         }
 
-        public getPetById(petId: number): ng.IPromise<__models.Pet> {
+        public getPetById(petId: number): ng.IPromise<__models.PetModel> {
             if (petId == undefined || petId == null) {
                 throw new Error(`The parameter 'petId' must be defined.`);
             }
             let resourceUrl: string = '/pet/{petId}'
                 .replace('{petId}', encodeURIComponent('' + petId));
-            return this.$http<__models.Pet>({
+            return this.$http<__models.PetModel>({
                 method: 'GET',
                 url: buildServiceUrl(this.baseUrl, resourceUrl)
             })
-                .then((response: ng.IHttpPromiseCallbackArg<__models.Pet>) => response.data)
+                .then((response: ng.IHttpPromiseCallbackArg<__models.PetModel>) => response.data)
                 .catch((response: ng.IHttpPromiseCallbackArg<any>) => response.data);
         }
 
@@ -281,7 +281,7 @@ namespace petstore.webservices {
                 .catch((response: ng.IHttpPromiseCallbackArg<any>) => response.data);
         }
 
-        public uploadFile(petId: number, additionalMetadata?: string, file?: any): ng.IPromise<__models.ApiResponse> {
+        public uploadFile(petId: number, additionalMetadata?: string, file?: any): ng.IPromise<__models.ApiResponseModel> {
             if (petId == undefined || petId == null) {
                 throw new Error(`The parameter 'petId' must be defined.`);
             }
@@ -290,7 +290,7 @@ namespace petstore.webservices {
             let fd: FormData = new FormData();
             fd.append('additionalMetadata', additionalMetadata);
             fd.append('file', file);
-            return this.$http<__models.ApiResponse>({
+            return this.$http<__models.ApiResponseModel>({
                 method: 'POST',
                 data: fd,
                 transformRequest: angular.identity,
@@ -299,7 +299,7 @@ namespace petstore.webservices {
                 },
                 url: buildServiceUrl(this.baseUrl, resourceUrl)
             })
-                .then((response: ng.IHttpPromiseCallbackArg<__models.ApiResponse>) => response.data)
+                .then((response: ng.IHttpPromiseCallbackArg<__models.ApiResponseModel>) => response.data)
                 .catch((response: ng.IHttpPromiseCallbackArg<any>) => response.data);
         }
     }
@@ -323,31 +323,31 @@ namespace petstore.webservices {
                 .catch((response: ng.IHttpPromiseCallbackArg<any>) => response.data);
         }
 
-        public placeOrder(body: __models.Order): ng.IPromise<__models.Order> {
+        public placeOrder(body: __models.OrderModel): ng.IPromise<__models.OrderModel> {
             if (body == undefined || body == null) {
                 throw new Error(`The parameter 'body' must be defined.`);
             }
             let resourceUrl: string = '/store/order';
-            return this.$http<__models.Order>({
+            return this.$http<__models.OrderModel>({
                 method: 'POST',
                 data: body,
                 url: buildServiceUrl(this.baseUrl, resourceUrl)
             })
-                .then((response: ng.IHttpPromiseCallbackArg<__models.Order>) => response.data)
+                .then((response: ng.IHttpPromiseCallbackArg<__models.OrderModel>) => response.data)
                 .catch((response: ng.IHttpPromiseCallbackArg<any>) => response.data);
         }
 
-        public getOrderById(orderId: number): ng.IPromise<__models.Order> {
+        public getOrderById(orderId: number): ng.IPromise<__models.OrderModel> {
             if (orderId == undefined || orderId == null) {
                 throw new Error(`The parameter 'orderId' must be defined.`);
             }
             let resourceUrl: string = '/store/order/{orderId}'
                 .replace('{orderId}', encodeURIComponent('' + orderId));
-            return this.$http<__models.Order>({
+            return this.$http<__models.OrderModel>({
                 method: 'GET',
                 url: buildServiceUrl(this.baseUrl, resourceUrl)
             })
-                .then((response: ng.IHttpPromiseCallbackArg<__models.Order>) => response.data)
+                .then((response: ng.IHttpPromiseCallbackArg<__models.OrderModel>) => response.data)
                 .catch((response: ng.IHttpPromiseCallbackArg<any>) => response.data);
         }
 
@@ -375,7 +375,7 @@ namespace petstore.webservices {
             this.baseUrl = config.baseUrl;
         }
 
-        public createUser(body: __models.User): ng.IPromise<any> {
+        public createUser(body: __models.UserModel): ng.IPromise<any> {
             if (body == undefined || body == null) {
                 throw new Error(`The parameter 'body' must be defined.`);
             }
@@ -389,7 +389,7 @@ namespace petstore.webservices {
                 .catch((response: ng.IHttpPromiseCallbackArg<any>) => response.data);
         }
 
-        public createUsersWithArrayInput(body: __models.User[]): ng.IPromise<any> {
+        public createUsersWithArrayInput(body: __models.UserModel[]): ng.IPromise<any> {
             if (body == undefined || body == null) {
                 throw new Error(`The parameter 'body' must be defined.`);
             }
@@ -403,7 +403,7 @@ namespace petstore.webservices {
                 .catch((response: ng.IHttpPromiseCallbackArg<any>) => response.data);
         }
 
-        public createUsersWithListInput(body: __models.User[]): ng.IPromise<any> {
+        public createUsersWithListInput(body: __models.UserModel[]): ng.IPromise<any> {
             if (body == undefined || body == null) {
                 throw new Error(`The parameter 'body' must be defined.`);
             }
@@ -447,21 +447,21 @@ namespace petstore.webservices {
                 .catch((response: ng.IHttpPromiseCallbackArg<any>) => response.data);
         }
 
-        public getUserByName(username: string): ng.IPromise<__models.User> {
+        public getUserByName(username: string): ng.IPromise<__models.UserModel> {
             if (username == undefined || username == null) {
                 throw new Error(`The parameter 'username' must be defined.`);
             }
             let resourceUrl: string = '/user/{username}'
                 .replace('{username}', encodeURIComponent('' + username));
-            return this.$http<__models.User>({
+            return this.$http<__models.UserModel>({
                 method: 'GET',
                 url: buildServiceUrl(this.baseUrl, resourceUrl)
             })
-                .then((response: ng.IHttpPromiseCallbackArg<__models.User>) => response.data)
+                .then((response: ng.IHttpPromiseCallbackArg<__models.UserModel>) => response.data)
                 .catch((response: ng.IHttpPromiseCallbackArg<any>) => response.data);
         }
 
-        public updateUser(username: string, body: __models.User): ng.IPromise<any> {
+        public updateUser(username: string, body: __models.UserModel): ng.IPromise<any> {
             if (username == undefined || username == null) {
                 throw new Error(`The parameter 'username' must be defined.`);
             }
@@ -516,55 +516,46 @@ namespace petstore.webservices {
                 }
             }
         }
-        if (queryParams) {
-            let queryString: string = '';
-            for (let p in queryParams) {
-                if (queryParams.hasOwnProperty(p) && queryParams[p]) {
-                    if (queryString) {
-                        queryString += '&';
-                    }
-                    queryString += `${p}=${queryParams[p]}`;
-                }
-            }
-            if (queryString) {
-                url += '?' + queryString;
-            }
-        }
         return url;
     }
 }
 
 namespace petstore.webservices.models {
-    export interface ApiResponse {
+    export interface ApiResponseModel {
         code: number;
         type: string;
         message: string;
     }
-    export interface Category {
+
+    export interface CategoryModel {
         id: number;
         name: string;
     }
-    export interface Order {
+
+    export interface OrderModel {
         id: number;
         petId: number;
         quantity: number;
         shipDate: Date;
-        status: string;
+        status: StatusOrderModel;
         complete: boolean;
     }
-    export interface Pet {
+
+    export interface PetModel {
         id: number;
-        category: Category;
+        category: CategoryModel;
         name: string;
         photoUrls: string[];
-        tags: Tag[];
-        status: string;
+        tags: TagModel[];
+        status: StatusPetModel;
     }
-    export interface Tag {
+
+    export interface TagModel {
         id: number;
         name: string;
     }
-    export interface User {
+
+    export interface UserModel {
         id: number;
         username: string;
         firstName: string;
@@ -574,10 +565,16 @@ namespace petstore.webservices.models {
         phone: string;
         userStatus: number;
     }
+
+    export type StatusOrderModel = "placed" | "approved" | "delivered";
+
+    export type StatusPetModel = "available" | "pending" | "sold";
+
     export type Initializer<TModel> = (model: TModel) => void;
+
     export class ModelFactory {
-        public static createEmptyApiResponse(initializer?: Initializer<ApiResponse>): ApiResponse {
-            let model: ApiResponse =  {
+        public static createEmptyApiResponseModel(initializer?: Initializer<ApiResponseModel>): ApiResponseModel {
+            let model: ApiResponseModel =  {
                 code: undefined,
                 type: '',
                 message: '',
@@ -587,8 +584,9 @@ namespace petstore.webservices.models {
             }
             return model;
         }
-        public static createEmptyCategory(initializer?: Initializer<Category>): Category {
-            let model: Category =  {
+
+        public static createEmptyCategoryModel(initializer?: Initializer<CategoryModel>): CategoryModel {
+            let model: CategoryModel =  {
                 id: undefined,
                 name: '',
             };
@@ -597,13 +595,14 @@ namespace petstore.webservices.models {
             }
             return model;
         }
-        public static createEmptyOrder(initializer?: Initializer<Order>): Order {
-            let model: Order =  {
+
+        public static createEmptyOrderModel(initializer?: Initializer<OrderModel>): OrderModel {
+            let model: OrderModel =  {
                 id: undefined,
                 petId: undefined,
                 quantity: undefined,
                 shipDate: undefined,
-                status: '',
+                status: undefined,
                 complete: false,
             };
             if (!!initializer) {
@@ -611,22 +610,24 @@ namespace petstore.webservices.models {
             }
             return model;
         }
-        public static createEmptyPet(initializer?: Initializer<Pet>): Pet {
-            let model: Pet =  {
+
+        public static createEmptyPetModel(initializer?: Initializer<PetModel>): PetModel {
+            let model: PetModel =  {
                 id: undefined,
-                category: ModelFactory.createEmptyCategory(),
+                category: ModelFactory.createEmptyCategoryModel(),
                 name: '',
                 photoUrls: [],
                 tags: [],
-                status: '',
+                status: undefined,
             };
             if (!!initializer) {
                 initializer(model);
             }
             return model;
         }
-        public static createEmptyTag(initializer?: Initializer<Tag>): Tag {
-            let model: Tag =  {
+
+        public static createEmptyTagModel(initializer?: Initializer<TagModel>): TagModel {
+            let model: TagModel =  {
                 id: undefined,
                 name: '',
             };
@@ -635,8 +636,9 @@ namespace petstore.webservices.models {
             }
             return model;
         }
-        public static createEmptyUser(initializer?: Initializer<User>): User {
-            let model: User =  {
+
+        public static createEmptyUserModel(initializer?: Initializer<UserModel>): UserModel {
+            let model: UserModel =  {
                 id: undefined,
                 username: '',
                 firstName: '',

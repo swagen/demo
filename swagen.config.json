@@ -8,6 +8,9 @@
       "operationName": "camelCase",
       "modelName": "pascalCase"
     },
+    "debug": {
+      "definition": "./samples/petstore/definition.json"
+    },
     "url": "http://petstore.swagger.io/v2/swagger.json",
     "options": {
       "moduleName": "common",

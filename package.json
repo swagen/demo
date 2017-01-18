@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Demo of Swagen generators.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/swagen/demo.git"
@@ -22,6 +19,7 @@
   "homepage": "https://github.com/swagen/demo#readme",
   "devDependencies": {
     "lodash": "^4.17.4",
-    "swagen-core": "0.0.16"
+    "swagen-angular": "0.0.6",
+    "swagen-core": "0.0.18"
   }
 }
